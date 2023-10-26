@@ -1,0 +1,17 @@
+<launch>
+    <param name="robot_description" textfile="$(find arm_hw)/test/test_motor.urdf" />
+    <rosparam file="$(find arm_hw)/config/actuator_coefficient.yaml" command="load" ns = "arm_hw"/>
+    <rosparam file="$(find arm_hw)/test/test_motor.yaml" command="load" />
+    <node name="arm_hw" pkg="arm_hw" type="arm_hw" respawn="false"
+          clear_params="true" />
+
+    <rosparam file="$(find arm_hw)/test/test_controller.yaml" command="load"/>
+
+    <node name="controller_loader" pkg="controller_manager" type="controller_manager" output="screen"
+          args="load
+          controllers/joint_state_controller
+          controllers/joint1_position_controller
+          controllers/joint2_position_controller
+          controllers/joint3_position_controller
+    "/>
+</launch>
