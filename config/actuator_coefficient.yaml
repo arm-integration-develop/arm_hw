@@ -1,0 +1,13 @@
+actuator_coefficient:
+  dm4310: # DM4310 with reducer
+    act2pos: 0.00009583 # 2PI/2^16 65536
+    act2vel: 0.01025641   # 21/2^12
+    act2effort: 0.0034188  # 14/2^12
+    kp2act: 8.19            # 4095/500
+    kd2act: 819.0             # 4095/5
+    pos2act: 10435.1456         # 1/act2pos
+    vel2act: 97.5000024    # 1/act2vel
+    effort2act: 292.500293   # 1/act2effort
+    pos_offset: -3.14
+    vel_offset: -21
+    effort_offset: -7.0
