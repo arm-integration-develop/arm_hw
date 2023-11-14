@@ -55,22 +55,20 @@
 #include <hardware_interface/actuator_command_interface.h>
 #include <transmission_interface/transmission_interface_loader.h>
 #include <joint_limits_interface/joint_limits_interface.h>
-#include <interface/hardware_interface/robot_state_interface.h>
+#include <arm_common/interface/hardware_interface/robot_state_interface.h>
+#include <arm_common/interface/hardware_interface/actuator_extra_interface.h>
+#include <arm_common/tools/can_motor.h>
 #include <joint_limits_interface/joint_limits_urdf.h>
 #include <joint_limits_interface/joint_limits_rosparam.h>
 
-
-
-#include <tools/can_motor.h>
-
-//#include
+// #include
 
 namespace arm_hw
 {
 class ArmRobotHW : public hardware_interface::RobotHW
 {
 public:
-    ArmRobotHW() = default;
+  ArmRobotHW() = default;
   /** \brief Get necessary params from param server. Init hardware_interface.
    *
    * Get params from param server and check whether these params are set. Load urdf of robot. Set up transmission and
@@ -104,11 +102,12 @@ public:
 
   void setCanBusThreadPriority(int thread_priority);
 
-  void registerROSInterface(XmlRpc::XmlRpcValue &act_datas);
+  void registerROSInterface(XmlRpc::XmlRpcValue& act_datas);
 
   void testMotor();
 
   void closeMotor();
+
 private:
   /** \brief Load urdf of robot from param server.
    *
@@ -121,7 +120,6 @@ private:
   bool setupTransmission(ros::NodeHandle& root_nh);
   bool setupJointLimit(ros::NodeHandle& root_nh);
 
-
   ros::ServiceServer service_server_;
 
   bool is_actuator_specified_ = false;
@@ -131,6 +129,7 @@ private:
   hardware_interface::ActuatorStateInterface act_state_interface_;
   hardware_interface::EffortActuatorInterface effort_act_interface_;
   hardware_interface::JointStateInterface jnt_state_interface_;
+  hardware_interface::ActuatorExtraInterface act_extra_interface_;
   std::vector<hardware_interface::JointHandle> effort_joint_handles_{};
   std::unique_ptr<transmission_interface::TransmissionInterfaceLoader> transmission_loader_{};
   transmission_interface::RobotTransmissions robot_transmissions_;
@@ -149,4 +148,4 @@ private:
   ros::Time last_publish_time_;
 };
 
-}  // namespace rm_hw
+}  // namespace arm_hw
