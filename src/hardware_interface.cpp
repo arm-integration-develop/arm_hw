@@ -65,6 +65,10 @@ bool ArmRobotHW::init(ros::NodeHandle& root_nh, ros::NodeHandle& robot_hw_nh)
     ROS_ERROR("Error occurred while setting up joint limit");
     return false;
   }
+
+  actuator_state_pub_.reset(
+          new realtime_tools::RealtimePublisher<arm_msgs::ActuatorState>(root_nh, "/actuator_states", 100));
+
   return true;
 }
 
