@@ -18,6 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
         controller_manager
         urdf
         realtime_tools
+        arm_msgs
         )
 
 catkin_package(

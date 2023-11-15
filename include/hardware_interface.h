@@ -58,8 +58,10 @@
 #include <arm_common/interface/hardware_interface/robot_state_interface.h>
 #include <arm_common/interface/hardware_interface/actuator_extra_interface.h>
 #include <arm_common/tools/can_motor.h>
+#include <arm_msgs/ActuatorState.h>
 #include <joint_limits_interface/joint_limits_urdf.h>
 #include <joint_limits_interface/joint_limits_rosparam.h>
+#include "realtime_tools/realtime_publisher.h"
 
 // #include
 
@@ -119,6 +121,7 @@ private:
   bool loadUrdf(ros::NodeHandle& root_nh);
   bool setupTransmission(ros::NodeHandle& root_nh);
   bool setupJointLimit(ros::NodeHandle& root_nh);
+  void publishActuatorState(const ros::Time& time);
 
   ros::ServiceServer service_server_;
 
@@ -146,6 +149,7 @@ private:
   can_interface::CanMotor can_motor_{};
 
   ros::Time last_publish_time_;
+  std::shared_ptr<realtime_tools::RealtimePublisher<arm_msgs::ActuatorState>> actuator_state_pub_;
 };
 
 }  // namespace arm_hw
