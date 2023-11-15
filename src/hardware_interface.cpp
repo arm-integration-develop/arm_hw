@@ -88,9 +88,14 @@ void ArmRobotHW::registerROSInterface(XmlRpc::XmlRpcValue &act_datas)
             effort_act_interface_.registerHandle(
                     hardware_interface::ActuatorHandle(act_state, &can_motor_.bus_id2act_data_[bus][id].exe_effort));
         }
+        else if (type.find("rm") != std::string::npos)
+        {
+            effort_act_interface_.registerHandle(
+                    hardware_interface::ActuatorHandle(act_state, &can_motor_.bus_id2act_data_[bus][id].exe_effort));
+        }
         else
         {
-            ROS_ERROR_STREAM("Actuator " << it->first << "'s type is not dm)");
+            ROS_ERROR_STREAM("Actuator " << it->first << "'s type is not dm or rm)");
         }
     }
     registerInterface(&act_state_interface_);

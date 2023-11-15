@@ -55,13 +55,10 @@
 #include <hardware_interface/actuator_command_interface.h>
 #include <transmission_interface/transmission_interface_loader.h>
 #include <joint_limits_interface/joint_limits_interface.h>
-#include <interface/hardware_interface/robot_state_interface.h>
+#include <arm_common/interface/hardware_interface/robot_state_interface.h>
 #include <joint_limits_interface/joint_limits_urdf.h>
 #include <joint_limits_interface/joint_limits_rosparam.h>
-
-
-
-#include <tools/can_motor.h>
+#include <arm_common/tools/can_motor.h>
 
 //#include
 

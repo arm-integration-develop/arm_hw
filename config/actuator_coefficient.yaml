@@ -11,3 +11,9 @@ actuator_coefficient:
     pos_offset: -3.14
     vel_offset: -21
     effort_offset: -7.0
+  rm_2006: # RoboMaster 2006 motor
+    act2pos: 2.13078897e-5  # 2PI/8192*(1/36)
+    act2vel: 0.0029088820   # 2PI/60*(1/36)
+    act2effort: 0.00018  #10/10000*0.18
+    effort2act: 5555.5555555   # 1/act2effort
+    max_out: 10000
